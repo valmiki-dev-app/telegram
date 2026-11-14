@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/onest';
+@import '@fontsource-variable/unbounded';
+@import '@fontsource/caveat/400.css';
+@import '@fontsource/caveat/600.css';
+@import '@fontsource/caveat/700.css';
 
 :root {
   color-scheme: light;
@@ -27,7 +32,77 @@
 }
 * { box-sizing: border-box; }
 html { background: var(--paper); }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Onest Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.app-shell { background: radial-gradient(ellipse at 50% 8%, rgba(255,255,255,.92), transparent 42%), var(--paper); }
+.app-frame { position: relative; isolation: isolate; }
+.brand-caption { font-family: 'Unbounded Variable', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: -.035em; }
+.hand { font-family: 'Caveat', cursive; font-weight: 700; }
+h1, h2, .task-title { font-family: 'Onest Variable', sans-serif; }
+.today-card h2, .section-heading h2 { font-weight: 720; }
+.screen-enter { animation: screen-arrive 520ms cubic-bezier(.2,.75,.25,1) both; }
+.home-screen > * { animation: rise-in 560ms cubic-bezier(.2,.75,.25,1) both; }
+.home-screen > *:nth-child(2) { animation-delay: 70ms; }
+.home-screen > *:nth-child(3) { animation-delay: 140ms; }
+.home-screen > *:nth-child(4) { animation-delay: 210ms; }
+.home-screen > *:nth-child(5) { animation-delay: 270ms; }
+.today-card { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.88); background: linear-gradient(145deg, rgba(255,255,255,.99), rgba(255,252,248,.96)); box-shadow: 0 14px 40px rgba(72,48,31,.055), 0 2px 8px rgba(72,48,31,.04); }
+.today-card::after { content: ''; position: absolute; top: -61px; right: -58px; width: 150px; height: 150px; border: 1px solid rgba(194,73,46,.1); border-radius: 50%; box-shadow: 0 0 0 18px rgba(194,73,46,.025), 0 0 0 37px rgba(194,73,46,.018); pointer-events: none; }
+.today-meta { font-weight: 600; letter-spacing: .01em; }
+.today-card h2 { font-size: 26px; }
+.primary-button { position: relative; overflow: hidden; box-shadow: 0 4px 0 var(--accent-dark), 0 8px 18px rgba(194,73,46,.18); transition: transform 180ms cubic-bezier(.2,.75,.25,1), box-shadow 180ms ease, background 180ms ease; }
+.primary-button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 0 var(--accent-dark), 0 14px 24px rgba(194,73,46,.22); }
+.primary-button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 var(--accent-dark), 0 3px 8px rgba(194,73,46,.15); }
+.shelf-row { border-radius: 16px; transition: background 180ms ease, transform 180ms cubic-bezier(.2,.75,.25,1), padding 180ms ease; }
+.shelf-row:hover { padding-left: 12px; background: rgba(255,255,255,.58); }
+.active-shelf .lesson-number { color: var(--accent); }
+.books { border-bottom-color: #c5b8a9; }
+.done-book { position: relative; animation: book-pop 440ms cubic-bezier(.16,1.2,.3,1) both; }
+.done-book:nth-child(2) { animation-delay: 100ms; }
+.done-book:nth-child(3) { animation-delay: 180ms; }
+.book { transform-origin: bottom center; }
+.shelf-chevron { transition: transform 180ms ease, color 180ms ease; }
+.shelf-row:hover .shelf-chevron { color: var(--accent); transform: translateX(3px); }
+.journey-track { position: relative; width: 100%; height: 5px; display: flex; justify-content: space-between; margin-top: 18px; border-radius: 99px; background: #e9e0d2; }
+.journey-fill { position: absolute; inset: 0 auto 0 0; width: 13.3%; border-radius: inherit; background: linear-gradient(90deg, #c2492e, #e5a176); animation: fill-track 900ms 200ms cubic-bezier(.2,.75,.25,1) both; }
+.journey-track i { z-index: 1; width: 5px; height: 5px; border-radius: 50%; background: var(--sand-deep); }
+.journey-track i:first-of-type { background: var(--accent); }
+.subscreen { animation: rise-in 520ms cubic-bezier(.2,.75,.25,1) both; }
+.lesson-card { position: relative; overflow: hidden; box-shadow: 0 18px 40px rgba(31,27,23,.16); }
+.lesson-card::after { content: ''; position: absolute; width: 210px; height: 210px; top: -108px; right: -70px; border: 1px solid rgba(251,246,238,.17); border-radius: 50%; box-shadow: 0 0 0 19px rgba(251,246,238,.035), 0 0 0 39px rgba(251,246,238,.025); pointer-events: none; }
+.option-button, .word-tile, .answer-tile, .secondary-button { transition: transform 180ms cubic-bezier(.2,.75,.25,1), border-color 180ms ease, background 180ms ease, box-shadow 180ms ease; }
+.option-button:hover, .word-tile:hover:not(:disabled), .answer-tile:hover, .secondary-button:hover { transform: translateY(-2px); border-color: var(--rose); box-shadow: 0 5px 12px rgba(31,27,23,.08); }
+.option-selected { box-shadow: inset 0 0 0 1px var(--accent); }
+.task-enter { animation: task-arrive 400ms cubic-bezier(.2,.75,.25,1) both; }
+.word-tile { animation: tile-arrive 420ms cubic-bezier(.16,1.2,.3,1) both; }
+.word-tile:nth-child(2) { animation-delay: 55ms; }
+.word-tile:nth-child(3) { animation-delay: 100ms; }
+.word-tile:nth-child(4) { animation-delay: 145ms; }
+.answer-tile { animation: tile-arrive 260ms cubic-bezier(.16,1.2,.3,1) both; }
+.feedback-sheet { transform-origin: bottom center; animation: feedback-arrive 360ms cubic-bezier(.2,.75,.25,1) both; }
+.complete-state { position: relative; overflow: hidden; }
+.complete-state > :not(.book-confetti) { position: relative; z-index: 1; }
+.book-confetti { position: absolute; inset: 12px 12px auto; height: 190px; pointer-events: none; }
+.book-confetti i { position: absolute; top: 64%; left: 50%; width: 7px; height: 15px; border-radius: 2px; background: var(--confetti, var(--accent)); opacity: 0; transform: rotate(var(--rotate, 0deg)); animation: book-float 900ms calc(var(--i) * 25ms) cubic-bezier(.1,.7,.3,1) both; }
+.book-confetti i:nth-child(3n) { --confetti: #d99c62; --rotate: 26deg; }
+.book-confetti i:nth-child(3n + 1) { --confetti: #66856b; --rotate: -24deg; }
+.book-confetti i:nth-child(3n + 2) { --confetti: #d78b79; --rotate: 40deg; }
+.mini-shelf i { box-shadow: inset 2px 0 rgba(255,255,255,.25); transform-origin: bottom; animation: book-pop 520ms cubic-bezier(.16,1.2,.3,1) both; }
+.mini-shelf i:nth-of-type(2) { animation-delay: 80ms; }
+.mini-shelf i:nth-of-type(3) { animation-delay: 160ms; }
+.icon-button { transition: background 160ms ease, transform 160ms ease; }
+.icon-button:hover { background: rgba(194,73,46,.08); transform: rotate(-5deg); }
+.bottom-links button { transition: color 160ms ease, padding 160ms ease; }
+.bottom-links button:hover { color: var(--accent); padding-left: 4px; }
+@keyframes screen-arrive { from { opacity: 0; transform: translateY(9px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes task-arrive { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes tile-arrive { from { opacity: 0; transform: translateY(8px) scale(.93); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes feedback-arrive { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes book-pop { 0% { opacity: .45; transform: translateY(6px) scaleY(.7); } 75% { transform: translateY(-2px) scaleY(1.08); } 100% { opacity: 1; transform: translateY(0) scaleY(1); } }
+@keyframes fill-track { from { width: 0; } to { width: 13.3%; } }
+@keyframes book-float { 0% { opacity: 0; transform: translate(-50%, 0) scale(.7) rotate(var(--rotate)); } 18% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--x), -125px) scale(1) rotate(calc(var(--rotate) + 130deg)); } }
+@media (max-width: 380px) { .today-card { padding: 19px; }.today-meta { font-size: 11px; }.shelf-title { font-size: 12px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
 button, input { font: inherit; }
 button { color: inherit; }
 :focus-visible { outline: 3px solid rgba(194,73,46,.45); outline-offset: 3px; }
